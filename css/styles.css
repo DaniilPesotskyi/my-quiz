@@ -1,0 +1,144 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    /* text */
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.2;
+    color:#264653;
+}
+
+p, h1, h2, h3, h4, h5, h6, a, ul, li {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.quiz-title {
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+    text-align: center;
+}
+
+/* QUIZ WRAP */
+.quiz-wrap {
+    width: 730px;
+    
+    padding: 55px;
+    margin: 0 auto;
+
+    background-color: #FBFCFF;
+    border: 1px solid #DAD3FF;
+    border-radius: 15px;
+}
+
+/* QUIZ HEADER */
+
+.quiz-header {
+    margin-bottom: 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.questions-counter-wrap {
+    width: 62px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #003566;
+    border-radius: 15px;
+}
+
+.question-counter {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.answer-number {
+    font-size: 24px;
+    color: #E1F6FF;
+}
+
+.answers-qnt {
+    font-size: 16px;
+    color: #939393;
+}
+
+.restart-button {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #E7E9FF;
+    border: 0;
+    border-radius: 15px;
+
+    font-size: 23px;
+    color: #264653;
+
+    transition: background-color 250ms,
+                color 250ms;
+
+    cursor: pointer;
+}
+
+.restart-button:hover,
+.restart-button:focus {
+    background-color: #FF9696;
+    color: #F2FBFF;
+}
+
+/* QESTION BLOCK */
+
+.question {
+    margin-bottom: 63px;
+
+    font-weight: 400;
+    font-size: 23px;
+}
+
+.answers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px
+}
+
+.answer {
+    width: 100%;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+
+    padding-left: 35px;
+
+    background-color: #e4e4e8;
+    border-radius: 15px;
+
+    transition: background-color 250ms;
+
+    cursor: pointer;
+}
+
+.answer:hover,
+.answer:focus {
+    background: #EFFCFF;
+}
+
