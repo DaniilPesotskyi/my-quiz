@@ -137,8 +137,152 @@ p, h1, h2, h3, h4, h5, h6, a, ul, li {
     cursor: pointer;
 }
 
+.answer--correct {
+    background-color: #2A9D8F;
+}
+
+.answer--incorrect {
+    background-color: #E76F51;
+}
+
 .answer:hover,
 .answer:focus {
     background: #EFFCFF;
 }
 
+/* RESULTS MODAL */
+
+.result-modal-backdrop {
+    display: none;
+}
+
+.result-modal-window {
+    display: none;
+
+    width: 730px;
+    
+    padding: 55px;
+    margin: 0 auto;
+
+    background-color: #FBFCFF;
+    border: 1px solid #DAD3FF;
+    border-radius: 15px;
+}
+
+.result-title {
+    margin-bottom: 55px;
+
+    font-weight: 400;
+    font-size: 36px;
+    color: #264653;
+    text-align: center;
+}
+
+.result-status {
+    margin-bottom: 25px;
+
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 1.5;
+    letter-spacing: 0.2em;
+    color: #264653;
+    text-align: center;
+}
+
+.correct-answers-per {
+    margin-bottom: 70px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.correct-answers-per-text {
+    font-size: 23px;
+    line-height: 34px;
+    color: #264653;
+}
+
+.correct-answers-per-value {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 137px;
+    height: 57px;
+
+    background-color: #E0F2FF;
+    border-radius: 15px;
+
+    font-size: 23px;
+    color: #264653;
+}
+
+.stat-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    margin-bottom: 150px;
+}
+
+.correct-answers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.correct-answers-text {
+    font-size: 17px;
+    color: #264653;
+}
+
+.correct-answers-value {
+    font-size: 17px;
+    color: #264653;
+}
+
+.total-answers {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-questions-text {
+    font-size: 17px;
+    color: #264653;
+}
+
+.total-questions-value {
+    font-size: 17px;
+    color: #264653;
+}
+
+.result-restart-btn {
+    margin: 0 auto;
+
+    width: 230px;
+    height: 45px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #E3E8FF;
+    border: 0;
+    border-radius: 15px;
+
+    font-size: 24px;
+    color: #264653;
+
+    transition: background-color 250ms,
+                color 250ms;
+
+    cursor: pointer;
+}
+
+.result-restart-btn:hover,
+.result-restart-btn:focus {
+    background-color: #606EBB;
+    color: #EEF3FF;
+}

@@ -37,11 +37,11 @@ const questions = [
         question: "Who directed the movie Jaws?",
         answers: [
             {
-                isCorrect: false,
+                isCorrect: true,
                 answerText: 'Steven Spielberg'
             },
             {
-                isCorrect: true,
+                isCorrect: false,
                 answerText: 'George Lucas'
             },
             {
@@ -50,11 +50,73 @@ const questions = [
             },
         ]
     },
+    {
+        question: "What is the capital of Brazil?",
+        answers: [
+            {
+                isCorrect: false,
+                answerText: 'Rio de Janeiro'
+            },
+            {
+                isCorrect: false,
+                answerText: 'São Paulo'
+            },
+            {
+                isCorrect: true,
+                answerText: 'Brasília'
+            },
+            {
+                isCorrect: false,
+                answerText: 'Belo Horizonte'
+            },
+        ]
+    },
+    {
+        question: "Which of the following animals is not a mammal?",
+        answers: [
+            {
+                isCorrect: false,
+                answerText: 'Bat'
+            },
+            {
+                isCorrect: true,
+                answerText: 'Crocodile'
+            },
+            {
+                isCorrect: false,
+                answerText: 'Cat'
+            },
+            {
+                isCorrect: false,
+                answerText: 'Dog'
+            },
+        ]
+    },
+    {
+        question: "Which artist painted the famous work 'The Persistence of Memory'?",
+        answers: [
+            {
+                isCorrect: false,
+                answerText: 'Claude Monet'
+            },
+            {
+                isCorrect: true,
+                answerText: 'Salvador Dalí'
+            },
+            {
+                isCorrect: false,
+                answerText: 'Pablo Picasso'
+            },
+        ]
+    },
 ]
+
+const quizWrapRef = document.querySelector('.quiz-wrap')
 
 const headerQuentionRefs = {
     currentAnswer: document.querySelector('.answer-number'),
-    answersQnt: document.querySelector('.answers-qnt')
+    answersQnt: document.querySelector('.answers-qnt'),
+    restartBtn: document.querySelector('.restart-button'),
 }
 
 const quentionRefs = {
@@ -64,11 +126,13 @@ const quentionRefs = {
 
 const questionsQuantity = questions.length
 let currentQuestionIndex = 0
+let correctAnswersCounter = 0;
 
 quentionRefs.answersList.addEventListener('click', onAnswerClick)
+headerQuentionRefs.restartBtn.addEventListener('click', onRestartQuentionClick)
 
 // Generate first question
-updateUserInterface(questions)
+updateQuentionsUserInterface(questions)
 
 function onAnswerClick(e) {
     if(e.target.nodeName !== 'LI') {
@@ -80,16 +144,20 @@ function onAnswerClick(e) {
 
     // Check on questions ended
     if(currentQuestionIndex === questions.length - 1) {
-        console.log('STOP CLICK!!!')
+        setTimeout(() => {
+            console.log('STOP')
+        }, 1500)
         return
     }
 
+    console.log(e.currentTarget.children)
+    
     // To the next question
     currentQuestionIndex += 1
     
     // Update interface with new question
     setTimeout(() => {
-        updateUserInterface(questions)
+        updateQuentionsUserInterface(questions)
     }, 1000)
 }
 
@@ -99,9 +167,9 @@ function createAnswersMarkup(questions) {
     }).join('')
 }
 
-function updateUserInterface(questions) {
+function updateQuentionsUserInterface(questions) {
     quentionRefs.answersList.innerHTML = "";
-
+    
     // Update question counter
     headerQuentionRefs.currentAnswer.textContent = currentQuestionIndex + 1
     headerQuentionRefs.answersQnt.textContent = questions.length
@@ -125,9 +193,33 @@ function isAnswerCorrectCheck(e) {
 
     // Check answer on true or false
     if(questions[currentQuestionIndex].answers[answersArray.indexOf(e.target)].isCorrect === true) {
-        console.log('NICE')
+        e.target.classList.add('answer--correct')
+        correctAnswersCounter += 1
         return
     }
 
-    console.log("BAD")
+    e.target.classList.add('answer--incorrect')
+}
+
+function countPercentageCorrectAnswers() {
+    return Math.round((correctAnswersCounter/questionsQuantity)*100)
+}
+
+function makeStatusResult() {
+    if(countPercentageCorrectAnswers() <= 35) {
+        return 'Low'
+    }
+
+    if(countPercentageCorrectAnswers() >= 75) {
+        return 'High'
+    }
+
+    return 'Medium'
+}
+
+function onRestartQuentionClick() {
+    currentQuestionIndex = 0;
+    correctAnswersCounter = 0;
+
+    updateQuentionsUserInterface(questions)
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <title>Quiz</title>
     <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -30,6 +30,27 @@
     </div>
 
     
+    <div class="result-modal-backdrop">
+        <div class="result-modal-window">
+            <h2 class="result-title">Result</h2>
+            <p class="result-status">${makeStatusResult()}</p>
+            <div class="correct-answers-per">
+                <p class="correct-answers-per-text">Your percentage of correct answers is</p>
+                <p class="correct-answers-per-value">${countPercentageCorrectAnswers()}%</p>
+            </div>
+            <ul class="stat-list">
+                <li class="correct-answers">
+                    <span class="correct-answers-text">Correct answers:</span>
+                    <span class="correct-answers-value">${correctAnswersCounter}</span>
+                </li>
+                <li class="total-answers">
+                    <span class="total-questions-text">Total questions:</span>
+                    <span class="total-questions-value">${questionsQuantity}</span>
+                <li>
+            </ul>
+            <button class="result-restart-btn">Restart</button>
+        </div>
+    </div>
     <script src="./js/quiz.js"></script>
 </body>
 </html>
