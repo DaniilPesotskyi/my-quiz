@@ -124,12 +124,22 @@ const quentionRefs = {
     question: document.querySelector('.question')
 }
 
+const resultModalRefs = {
+    backdrop: document.querySelector('.result-modal-backdrop'),
+    percentageValue: document.querySelector('.correct-answers-per-value'),
+    correctAnswersCounter: document.querySelector('.correct-answers-value'),
+    totalQuestions: document.querySelector('.total-questions-value'),
+    restartBtn: document.querySelector('.result-restart-btn')
+}
+
 const questionsQuantity = questions.length
 let currentQuestionIndex = 0
 let correctAnswersCounter = 0;
 
 quentionRefs.answersList.addEventListener('click', onAnswerClick)
 headerQuentionRefs.restartBtn.addEventListener('click', onRestartQuentionClick)
+
+resultModalRefs.restartBtn.addEventListener('click', onRestartQuizButtonClick)
 
 // Generate first question
 updateQuentionsUserInterface(questions)
@@ -145,12 +155,10 @@ function onAnswerClick(e) {
     // Check on questions ended
     if(currentQuestionIndex === questions.length - 1) {
         setTimeout(() => {
-            console.log('STOP')
+            openModalWindow()
         }, 1500)
         return
     }
-
-    console.log(e.currentTarget.children)
     
     // To the next question
     currentQuestionIndex += 1
@@ -202,7 +210,7 @@ function isAnswerCorrectCheck(e) {
 }
 
 function countPercentageCorrectAnswers() {
-    return Math.round((correctAnswersCounter/questionsQuantity)*100)
+    return `${Math.round((correctAnswersCounter/questionsQuantity)*100)}%`
 }
 
 function makeStatusResult() {
@@ -222,4 +230,21 @@ function onRestartQuentionClick() {
     correctAnswersCounter = 0;
 
     updateQuentionsUserInterface(questions)
+}
+
+function openModalWindow() {
+    resultModalRefs.percentageValue.textContent = countPercentageCorrectAnswers();
+    resultModalRefs.correctAnswersCounter.textContent = correctAnswersCounter;
+    resultModalRefs.totalQuestions.textContent = questionsQuantity;
+
+    resultModalRefs.backdrop.classList.toggle('result-modal-backdrop--is-hidden')
+}
+
+function onRestartQuizButtonClick() {
+    resultModalRefs.backdrop.classList.toggle('result-modal-backdrop--is-hidden')
+
+    currentQuestionIndex = 0
+    correctAnswersCounter = 0;
+
+    onRestartQuentionClick()
 }

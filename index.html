@@ -30,22 +30,22 @@
     </div>
 
     
-    <div class="result-modal-backdrop">
+    <div class="result-modal-backdrop result-modal-backdrop--is-hidden">
         <div class="result-modal-window">
             <h2 class="result-title">Result</h2>
-            <p class="result-status">${makeStatusResult()}</p>
+            <p class="result-status">High</p>
             <div class="correct-answers-per">
                 <p class="correct-answers-per-text">Your percentage of correct answers is</p>
-                <p class="correct-answers-per-value">${countPercentageCorrectAnswers()}%</p>
+                <p class="correct-answers-per-value">0%</p>
             </div>
             <ul class="stat-list">
                 <li class="correct-answers">
                     <span class="correct-answers-text">Correct answers:</span>
-                    <span class="correct-answers-value">${correctAnswersCounter}</span>
+                    <span class="correct-answers-value">0</span>
                 </li>
                 <li class="total-answers">
                     <span class="total-questions-text">Total questions:</span>
-                    <span class="total-questions-value">${questionsQuantity}</span>
+                    <span class="total-questions-value">0</span>
                 <li>
             </ul>
             <button class="result-restart-btn">Restart</button>

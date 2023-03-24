@@ -147,30 +147,48 @@ p, h1, h2, h3, h4, h5, h6, a, ul, li {
 
 .answer:hover,
 .answer:focus {
-    background: #EFFCFF;
+    background: hsl(189, 100%, 96%);
 }
 
 /* RESULTS MODAL */
 
 .result-modal-backdrop {
-    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 15, 146, 0.2);
+
+    opacity: 1;
 }
 
-.result-modal-window {
-    display: none;
+.result-modal-backdrop--is-hidden {
+    opacity: 0;
+    pointer-events: none;
+}
 
-    width: 730px;
+
+.result-modal-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: fit-content;
     
     padding: 55px;
     margin: 0 auto;
 
-    background-color: #FBFCFF;
-    border: 1px solid #DAD3FF;
+    background-color: #d2dfff;
+    border: 1px solid #4925ff;
     border-radius: 15px;
 }
 
 .result-title {
-    margin-bottom: 55px;
+    margin-bottom: 45px;
 
     font-weight: 400;
     font-size: 36px;
@@ -179,7 +197,7 @@ p, h1, h2, h3, h4, h5, h6, a, ul, li {
 }
 
 .result-status {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 
     font-weight: 600;
     font-size: 36px;
@@ -190,11 +208,12 @@ p, h1, h2, h3, h4, h5, h6, a, ul, li {
 }
 
 .correct-answers-per {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
 
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+    gap: 15px;
 }
 
 .correct-answers-per-text {
@@ -223,7 +242,7 @@ p, h1, h2, h3, h4, h5, h6, a, ul, li {
     flex-direction: column;
     gap: 30px;
 
-    margin-bottom: 150px;
+    margin-bottom: 50px;
 }
 
 .correct-answers {
