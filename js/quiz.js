@@ -126,6 +126,7 @@ const quentionRefs = {
 
 const resultModalRefs = {
     backdrop: document.querySelector('.result-modal-backdrop'),
+    textResultMark: document.querySelector('.result-status'),
     percentageValue: document.querySelector('.correct-answers-per-value'),
     correctAnswersCounter: document.querySelector('.correct-answers-value'),
     totalQuestions: document.querySelector('.total-questions-value'),
@@ -133,7 +134,7 @@ const resultModalRefs = {
 }
 
 const questionsQuantity = questions.length
-let currentQuestionIndex = 0
+let currentQuestionIndex = 0;
 let correctAnswersCounter = 0;
 
 quentionRefs.answersList.addEventListener('click', onAnswerClick)
@@ -149,6 +150,8 @@ function onAnswerClick(e) {
         return
     }
 
+    makeAnswersDisabled()
+
     // Check correct answer 
     isAnswerCorrectCheck(e)
 
@@ -156,7 +159,7 @@ function onAnswerClick(e) {
     if(currentQuestionIndex === questions.length - 1) {
         setTimeout(() => {
             openModalWindow()
-        }, 1500)
+        }, 800)
         return
     }
     
@@ -166,7 +169,7 @@ function onAnswerClick(e) {
     // Update interface with new question
     setTimeout(() => {
         updateQuentionsUserInterface(questions)
-    }, 1000)
+    }, 800)
 }
 
 function createAnswersMarkup(questions) {
@@ -210,7 +213,7 @@ function isAnswerCorrectCheck(e) {
 }
 
 function countPercentageCorrectAnswers() {
-    return `${Math.round((correctAnswersCounter/questionsQuantity)*100)}%`
+    return Math.round((correctAnswersCounter/questionsQuantity)*100)
 }
 
 function makeStatusResult() {
@@ -233,7 +236,8 @@ function onRestartQuentionClick() {
 }
 
 function openModalWindow() {
-    resultModalRefs.percentageValue.textContent = countPercentageCorrectAnswers();
+    resultModalRefs.textResultMark.textContent = makeStatusResult()
+    resultModalRefs.percentageValue.textContent = `${countPercentageCorrectAnswers()}%`;
     resultModalRefs.correctAnswersCounter.textContent = correctAnswersCounter;
     resultModalRefs.totalQuestions.textContent = questionsQuantity;
 
@@ -247,4 +251,13 @@ function onRestartQuizButtonClick() {
     correctAnswersCounter = 0;
 
     onRestartQuentionClick()
+}
+
+function makeAnswersDisabled() {
+    let answersQnt = questions[currentQuestionIndex].answers.length
+
+    // Make an array of answers
+    for (let i = 0; i < answersQnt; i += 1) {
+        quentionRefs.answersList.children[i].style.pointerEvents = 'none';
+    }
 }
